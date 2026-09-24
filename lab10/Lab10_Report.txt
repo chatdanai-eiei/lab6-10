@@ -1,0 +1,43 @@
+======================================================
+COE67-222 Operating Systems - Lab 10 Report (Final)
+Name:Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. The Role of the Operating System:
+
+- File System & Permissions (Lab 9):
+
+Answer:The script uses os.path.exists() to check if the dataset exists.
+Workload D requests "secret_keys.txt", which does not exist, so
+the OS rejects the job.
+
+- Memory Management (Labs 5/6):
+
+Answer:The script checks available RAM before starting a job. The while
+loop makes the job wait until enough RAM is available. This helps
+prevent excessive memory usage and Thrashing.
+
+- Concurrency & Deadlocks (Labs 3/4):
+
+Answer:The program sorts GPU IDs before acquiring them using
+sorted(req_gpus). This makes all jobs acquire GPUs in the same
+order and helps prevent Circular Wait and Deadlock.
+
+
+2. Hardware Utilization:
+
+Answer:Workload A uses 40GB RAM and GPUs 0, 1, 2.
+Workload B uses 16GB RAM and no GPU.
+Workload C uses 2GB RAM and GPU 3.
+
+Because they use different resources, the three workloads can run
+at the same time without blocking each other.
+
+
+3. Course Reflection (AI Engineering Context):
+
+Answer:Operating System knowledge helps an MLOps Engineer manage AI
+workloads efficiently. Process queues, RAM management, Deadlock
+avoidance, and File Systems help manage resources, prevent errors,
+and protect important AI data and models.

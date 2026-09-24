@@ -1,0 +1,46 @@
+======================================================
+COE67-222 Operating Systems - Lab 06 Report
+Name:Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. FIFO vs LRU (Phase 2): In the page_replacement.py script, why did the LRU algorithm
+perform better (have fewer page faults) than the FIFO algorithm
+for the given reference string? Explain how LRU decides which
+page to evict.
+
+Answer: LRU performed better because it considers the recent usage of
+each page. It removes the page that has not been used for the
+longest time. This is useful because a page that was recently
+used is more likely to be used again.FIFO only removes the page that has been in memory for the
+longest time. It does not consider whether that page was used
+recently.
+
+For this reference string, FIFO produced 9 page faults while
+LRU produced 7 page faults.
+
+
+2. Understanding Thrashing (Phase 3): Based on your observation of ai_thrashing.py, define "Thrashing"
+in your own words. Why is the processing time significantly
+higher in Scenario 2?
+
+Answer: Thrashing happens when the Operating System spends too much
+time moving pages between RAM and Disk instead of doing the
+actual work.Scenario 2 is slower because the system continuously performs
+Disk I/O. Disk access is much slower than accessing data in
+RAM. Therefore, the CPU spends more time waiting for data and
+the overall processing time becomes much higher.
+
+
+3. AI Engineering Decision: If you are training an AI model and your system begins to
+thrash because the RAM is full, lowering the batch_size in
+your Python code is a common solution. How does lowering the
+batch_size help the Operating System resolve the Thrashing
+problem?
+
+Answer: Lowering the batch_size reduces the amount of data that needs
+to be loaded into memory at one time. This reduces memory
+usage and gives the Operating System enough free RAM to keep
+more pages in physical memory. As a result, the system needs to swap pages between RAM and
+Disk less often, which reduces Thrashing and improves the
+training performance.

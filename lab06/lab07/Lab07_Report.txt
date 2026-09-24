@@ -1,0 +1,49 @@
+======================================================
+COE67-222 Operating Systems - Lab 07 Report
+Name:Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. The Convoy Effect (Phase 2):In the FCFS output of cpu_scheduler.py, what is the
+"Convoy Effect"? How did the presence of Process P1
+affect the waiting times of P2 and P3?
+
+Answer:The Convoy Effect happens when a long CPU-bound process
+runs first and causes many shorter processes to wait behind it.
+In this lab, P1 requires 10 CPU time units. Because FCFS
+is non-preemptive, P1 runs until it finishes before P2 and
+P3 can run.Therefore, P2 has to wait 10 time units and P3 has to wait
+12 time units before they can start.
+
+
+2. Choosing the Time Quantum:In Round Robin, the Time Quantum is critical.What happens if the OS sets the Time Quantum extremely large
+(e.g., Quantum = 100)? Which algorithm does RR start to
+behave like?
+
+Answer:If the Time Quantum is extremely large, a process can
+finish before the OS needs to switch to another process.
+Therefore, Round Robin starts to behave like FCFS.
+
+What happens if the OS sets the Time Quantum extremely small
+(e.g., Quantum = 0.0001)?
+
+Answer:If the Time Quantum is extremely small, the OS must switch
+between processes very frequently. This creates a lot of
+Context Switching overhead.The CPU spends more time switching between processes and
+less time doing useful work.
+
+
+3. AI Context:In Phase 3, we used a Round Robin approach for generating
+tokens in an LLM. Explain why iteration-level Round Robin
+scheduling prevents long user queries from starving short
+queries, and how it improves perceived latency
+(Time To First Token / TTFT) for interactive AI applications.
+
+Answer:Iteration-level Round Robin gives each request a chance to
+generate a token before moving to the next request.For example, User A may need 10 tokens while User B only
+needs 2 tokens. Instead of making User B wait for all of
+User A's tokens, the scheduler can generate one token for
+User A and then one token for User B.This allows short requests to finish earlier and prevents
+them from being blocked by long requests. It also improves
+perceived latency because users can receive their first
+token earlier, which improves Time To First Token (TTFT).

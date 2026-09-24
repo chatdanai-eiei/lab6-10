@@ -1,0 +1,44 @@
+======================================================
+COE67-222 Operating Systems - Lab 08 Report
+Name:Chatdanai Nasen
+Student ID: 67100263
+======================================================
+
+1. Disk Scheduling (Phase 2):Looking at the output of disk_scheduler.py, why did the SCAN
+algorithm result in a significantly lower "Total Head Movement"
+compared to FCFS? Explain the logic behind the Elevator behavior.
+
+Answer:SCAN resulted in lower Total Head Movement because it does not
+process disk requests randomly in the order they arrive.Instead, SCAN moves the disk head in one direction and services
+the requests along the way. In this lab, the disk head starts at
+position 53 and moves upward first toward cylinder 199.After reaching the end, the disk head reverses direction and
+services the remaining requests.This behavior is similar to an elevator because the head moves
+in one direction before changing direction. It reduces unnecessary
+back-and-forth movement compared with FCFS.In this lab, FCFS produced 640 cylinders of movement while SCAN
+produced 331 cylinders.
+
+
+2. I/O Bound Concept:If an Operating System is described as being "I/O Bound" during
+a task, what does that actually mean for the CPU? Is the CPU at
+100% usage or is it mostly idle? Why?
+
+Answer:I/O Bound means that the process spends most of its time waiting
+for input or output operations, such as reading data from storage.During this waiting time, the CPU is not continuously doing
+computation for that process. Therefore, the CPU can be mostly
+idle or can run other processes while waiting for the I/O operation
+to finish.
+
+
+3. AI Industry Connection (Phase 3):Explain why storing an AI image dataset as 1,000,000 separate
+.jpg files causes high I/O overhead and GPU starvation compared
+to packing them into a single sequential binary format such as
+TFRecord, WebDataset, or HDF5.
+
+Answer:Storing the dataset as 1,000,000 separate JPG files creates a lot
+of I/O overhead because the Operating System must repeatedly open,
+read, and close individual files.Each file also requires filesystem operations and metadata handling.
+This can make data loading slower and cause the GPU to wait for the
+next batch of data. This is called GPU starvation or being I/O Bound.When the images are packed into one large sequential file, the OS
+can read the data continuously with fewer file operations. This
+reduces I/O overhead and allows data to be supplied to the AI
+training process more efficiently.
